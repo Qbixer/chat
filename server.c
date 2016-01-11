@@ -73,7 +73,7 @@ void listapokojow(){
  * Return 0 jeśli nie musi wysyłać informacji zwrotnej
  * return 1 jeśli musi
  */
-int wykonaj(){
+int wykonywanie(){
 	char rozkaz[6];
 	strncpy(get+1, rozkaz, 6);
 	if (strcmp(rozkaz, "/login")) {
