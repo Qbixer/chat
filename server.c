@@ -13,7 +13,7 @@ struct pokoj{
 	int uzytkownicy[USERS];
 };
 
-char zajety[USERS];
+char zalogowany[USERS];
 char login[USERS][LOGIN];
 char send[WIADOMOSC];
 char get[WIADOMOSC];
@@ -31,9 +31,24 @@ void pobieranie(){
 
 }
 
-void logowanie(){
-
-
+// return 1,gdy nie ma użytkownika w bazie
+// return 0,gdy pomyślnie zalogowano
+// return 2, gdy jest już zalogowany
+int logowanie(){
+	char Login[12];
+	strncpy(get + 8, Login , 12);
+	int i;
+	for(i = 0;i<USERS;i++){
+		if(!strcmp(Login,login[i])){
+			if(zalogowany[i] == 1)
+				return 2;
+			else{
+				zalogowany[i] = 1;
+				return 0;
+			}
+		}
+	}
+	return 1;
 }
 
 wylogowywanie(){
@@ -41,7 +56,7 @@ wylogowywanie(){
 
 }
 
-
+//    c/login marian
 
 int main() {
 
@@ -50,10 +65,9 @@ int main() {
 	while (1) {
 		memset(get, 0, sizeof(char));
 		pobieranie();
-		strncpy(get, rozkaz + 2, 6);
+		strncpy(get+2, rozkaz, 6);
 		if (strcmp(rozkaz, "/login")) {
 			logowanie();
-
 		} else if (strcmp(rozkaz, "/lgout")) {
 			wylogowywanie();
 		} else if (strcmp(rozkaz, "/rlist")) {
