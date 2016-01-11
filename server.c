@@ -1,7 +1,7 @@
 ﻿#define USERS 10
 #define LOGIN 12
 #define POKOJE 5
-#define WIADOMOSC 128
+#define WIADOMOSC 180
 
 #include <stdio.h>
 #include <string.h>
@@ -66,7 +66,7 @@ int wylogowywanie(){
 }
 
 void listapokojow(){
-	for(int<)
+	for(int< )
 }
 
 /*
