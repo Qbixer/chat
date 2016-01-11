@@ -66,7 +66,7 @@ int wylogowywanie(){
 }
 
 /*
- *
+ *Zwraca listę pokojów
  *
  *przykładowa informacja zwrotna:
  * "Pokoje: pokoj_a pokoj_b pokoj_c\0"
@@ -75,10 +75,28 @@ int wylogowywanie(){
 void listapokojow() {
 	int i;
 	strcpy(send, "Pokoje: ");
-	int j = 8;
 	for (i = 0; i < POKOJE; i++) {
 		if(pokoj_dostepny[i]){
 			strcat(send,pokoje[i].nazwa);
+			strcat(send," ");
+		}
+	}
+}
+
+
+/*
+ *Zwraca listę zalogowanych uzytkownikow
+ *
+ *przykładowa wiadomość zwrotna:
+ * "Zalogowani: Marek Zenon Tomasz\0"
+ */
+void listauzytkownikow(){
+	int i;
+	strcpy(send, "Zalogowani: ");
+	for (i = 0; i < USERS; i++) {
+		if(zalogowany[i]){
+			strcat(send,login[i]);
+			strcat(send," ");
 		}
 	}
 }
@@ -97,7 +115,7 @@ int wykonywanie(){
 	} else if (strcmp(rozkaz, "/rlist")) {
 		listapokojow();
 	} else if (strcmp(rozkaz, "/ulist")) {
-
+		listauzytkownikow();
 	} else if (strcmp(rozkaz, "/lgout")) {
 
 	} else if (strcmp(rozkaz, "/eroom")) {
