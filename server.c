@@ -51,12 +51,19 @@ int logowanie(){
 	return 1;
 }
 
-wylogowywanie(){
-
-
+int wylogowywanie(){
+	if(zalogowany[])
 }
 
-//    c/login marian
+/*
+ *  Identyfikator użytkownika, dodawany automatycznie przez program klienta, 1 char
+ *  |
+ *  |  _________rozkaz 6 charów
+ *  | |   |
+ *  | |   |
+ *  c/login Zenon
+ */
+
 
 int main() {
 
