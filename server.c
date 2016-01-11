@@ -8,7 +8,6 @@
 
 struct pokoj{
 	char nazwa[LOGIN];
-	int id;
 	int ilosc;
 	int uzytkownicy[USERS];
 };
@@ -17,10 +16,11 @@ char zalogowany[USERS];
 char login[USERS][LOGIN];
 char send[WIADOMOSC];
 char get[WIADOMOSC];
+char pokoj_dostepny[POKOJE];
 struct pokoj pokoje[POKOJE];
 
 
-void wysylanie(int i){
+void wysylanie(){
 
 
 }
@@ -51,9 +51,56 @@ int logowanie(){
 	return 1;
 }
 
+
+/*
+ * 0 użytkownik pomyślnie wylogowany
+ * 1 użytkownik nie był zalogowany
+ */
 int wylogowywanie(){
-	if(zalogowany[])
+	if(zalogowany[get[0]]){
+		zalogowany[get[0]] = 0;
+		return 0;
+	}else
+		return 1;
 }
+
+void listapokojow(){
+	for(int<)
+}
+
+/*
+ * Return 0 jeśli nie musi wysyłać informacji zwrotnej
+ * return 1 jeśli musi
+ */
+int wykonaj(){
+	char rozkaz[6];
+	strncpy(get+1, rozkaz, 6);
+	if (strcmp(rozkaz, "/login")) {
+		logowanie();
+	} else if (strcmp(rozkaz, "/lgout")) {
+		wylogowywanie();
+	} else if (strcmp(rozkaz, "/rlist")) {
+		listapokojow();
+	} else if (strcmp(rozkaz, "/ulist")) {
+
+	} else if (strcmp(rozkaz, "/lgout")) {
+
+	} else if (strcmp(rozkaz, "/eroom")) {
+
+	} else if (strcmp(rozkaz, "/lroom")) {
+
+	} else if (strcmp(rozkaz, "/croom")) {
+
+	} else if (strcmp(rozkaz, "/mroom")) {
+
+	} else if (strcmp(rozkaz, "/muser")) {
+
+	}
+	else {
+
+	}
+}
+
 
 /*
  *  Identyfikator użytkownika, dodawany automatycznie przez program klienta, 1 char
@@ -67,40 +114,14 @@ int wylogowywanie(){
 
 int main() {
 
-	char rozkaz[6];
-
 	while (1) {
-		memset(get, 0, sizeof(char));
+
+		memset(get, 0, sizeof(char)*WIADOMOSC);
+		memset(send, 0, sizeof(char)*WIADOMOSC);
 		pobieranie();
-		strncpy(get+2, rozkaz, 6);
-		if (strcmp(rozkaz, "/login")) {
-			logowanie();
-		} else if (strcmp(rozkaz, "/lgout")) {
-			wylogowywanie();
-		} else if (strcmp(rozkaz, "/rlist")) {
-
-		} else if (strcmp(rozkaz, "/ulist")) {
-
-		} else if (strcmp(rozkaz, "/lgout")) {
-
-		} else if (strcmp(rozkaz, "/eroom")) {
-
-		} else if (strcmp(rozkaz, "/lroom")) {
-
-		} else if (strcmp(rozkaz, "/croom")) {
-
-		} else if (strcmp(rozkaz, "/mroom")) {
-
-		} else if (strcmp(rozkaz, "/muser")) {
-
+		if(wykonywanie()) {
+			wysylanie();
 		}
-		else {
-			int i;
-			for (i = 0; i < USERS; i++) {
 
-				strncpy(send, get, 128);
-				wysylanie(i + 3);
-			}
-		}
 	}
 }
