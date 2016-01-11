@@ -118,6 +118,7 @@ int wykonywanie(){
 
 
 /*
+ * Przykladowa wiadomość od uzytkownika
  *  Identyfikator użytkownika, dodawany automatycznie przez program klienta, 1 char
  *  |
  *  |  _________rozkaz 6 charów
