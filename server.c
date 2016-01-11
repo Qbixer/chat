@@ -7,26 +7,27 @@
 #include <string.h>
 
 struct pokoj{
-	char nazwa[LOGIN];
-	int ilosc;
-	int uzytkownicy[USERS];
+	char nazwa[LOGIN]; //nazwa pokoju
+	int ilosc; //iloscuzytkownikow
+	char dostepny[USERS];//czy dany uzytkownik jest dostepny
+	unsigned char uzytkownicy[USERS];//lista uzytkownikow
 };
 
-char zalogowany[USERS];
-char login[USERS][LOGIN];
-char send[WIADOMOSC];
-char get[WIADOMOSC];
-char pokoj_dostepny[POKOJE];
-struct pokoj pokoje[POKOJE];
+char zalogowany[USERS]; //1 jesli uzytkownik jest zalogowany 0 jewli nie, nr w tablicy to identyfikator użytkownika
+char login[USERS][LOGIN]; //Przechowuje nazwy użytkowników, nr w tablicy to identyfikator użytkownika
+char send[WIADOMOSC];//Wiadomosc do wyslania
+char get[WIADOMOSC];//wiadomosc otrzymana
+char pokoj_dostepny[POKOJE];//czy dany pokoj jest dostepny nr w tablicy identyfikatorem pokoju
+struct pokoj pokoje[POKOJE];//struktura pokoju numer w tablicy jest identyfikatorem pokoju
 
-
+//Wysylanie wiadomosci
 void wysylanie(){
 
 
 }
 
 
-
+//Pobieranie
 void pobieranie(){
 
 }
