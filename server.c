@@ -3,6 +3,7 @@
 #define POKOJE 5 //Mozliwa ilosc pokojow
 #define WIADOMOSC 180 //Maksymalna dlugosc wiadomosci
 
+
 #include <stdio.h>
 #include <string.h>
 
@@ -66,7 +67,11 @@ int wylogowywanie(){
 }
 
 void listapokojow(){
-	for(int< )
+	int i;
+	int j = 0;
+	for(i = 0; i<POKOJE;i++){
+		if()
+	}
 }
 
 /*
