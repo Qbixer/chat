@@ -65,39 +65,11 @@ int wylogowywanie(){
 		return 1;
 }
 
-/*
- *Zwraca listę pokojów
- *
- *przykładowa informacja zwrotna:
- * "Pokoje: pokoj_a pokoj_b pokoj_c\0"
- */
-
-void listapokojow() {
+void listapokojow(){
 	int i;
-	strcpy(send, "Pokoje: ");
-	for (i = 0; i < POKOJE; i++) {
-		if(pokoj_dostepny[i]){
-			strcat(send,pokoje[i].nazwa);
-			strcat(send," ");
-		}
-	}
-}
+	int j = 0;
+	for(i = 0; i<POKOJE;i++){
 
-
-/*
- *Zwraca listę zalogowanych uzytkownikow
- *
- *przykładowa wiadomość zwrotna:
- * "Zalogowani: Marek Zenon Tomasz\0"
- */
-void listauzytkownikow(){
-	int i;
-	strcpy(send, "Zalogowani: ");
-	for (i = 0; i < USERS; i++) {
-		if(zalogowany[i]){
-			strcat(send,login[i]);
-			strcat(send," ");
-		}
 	}
 }
 
@@ -109,13 +81,42 @@ int wykonywanie(){
 	char rozkaz[6];
 	strncpy(get+1, rozkaz, 6);
 	if (strcmp(rozkaz, "/login")) {
-		logowanie();
+		int k = logowanie();
+		int id = (int) get[0];
+		msg.type = id+3;
+		switch(k){
+			case 0:
+			{
+				send = "Zalogowanie powiodlo sie\n";
+				msgsnd(id, send, sizeof(send)+1, 0);
+				break;
+			}
+			case 1:
+			{
+				send = "Zalogowanie nie powiodlo sie\n"
+				msgsnd(id, send, sizeof(send)+1, 0);
+				break;
+			}
+			case 2:
+			{
+				send = "Jestes juz zalogowany/a\n"
+				msgsnd(id, send, sizeof(send)+1, 0);
+				break;
+			}
+		}
 	} else if (strcmp(rozkaz, "/lgout")) {
+		msg.type = id+3;
+		msgsnd(id, "Wylogowywuje\n", 14, 0);
 		wylogowywanie();
+		
 	} else if (strcmp(rozkaz, "/rlist")) {
 		listapokojow();
+		
 	} else if (strcmp(rozkaz, "/ulist")) {
-		listauzytkownikow();
+		msg.type = id+3;
+		int i =0;
+		for(i;i<USERS;)
+
 	} else if (strcmp(rozkaz, "/lgout")) {
 
 	} else if (strcmp(rozkaz, "/eroom")) {
@@ -136,13 +137,12 @@ int wykonywanie(){
 
 
 /*
- * Przykladowa wiadomość od uzytkownika
  *  Identyfikator użytkownika, dodawany automatycznie przez program klienta, 1 char
  *  |
  *  |  _________rozkaz 6 charów
  *  | |   |
  *  | |   |
- *  "c/login Zenon\0"
+ *  c/login Zenon
  */
 
 
