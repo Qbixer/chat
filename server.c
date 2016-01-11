@@ -1,7 +1,7 @@
-﻿#define USERS 10
-#define LOGIN 12
-#define POKOJE 5
-#define WIADOMOSC 180
+﻿#define USERS 10 //Maksymalna ilosc uzytkownikow
+#define LOGIN 12 //Dlugosc loginu - stala
+#define POKOJE 5 //Mozliwa ilosc pokojow
+#define WIADOMOSC 180 //Maksymalna dlugosc wiadomosci
 
 #include <stdio.h>
 #include <string.h>
