@@ -74,6 +74,50 @@ void listapokojow(){
 }
 
 /*
+*	Wypisuje komunikat po probie zalogowania
+*
+*/
+void msglogin(int typ)
+{
+	switch(typ){
+		case 0:
+		{
+			send = "Zalogowanie powiodlo sie\n";
+			break;
+		}
+		case 1:
+		{
+			send = "Zalogowanie nie powiodlo sie\n"
+			break;
+		}
+		case 2:
+		{
+			send = "Jestes juz zalogowany/a\n"
+			break;
+		}
+	}
+}
+/*
+*	Wypisuje list userow
+*
+*/
+void msgulist()
+{
+	int i = 0;
+	strcpy(send, "Użytkownicy: ");
+	for (i = 0; i < USERS; i++) 
+	{
+        	if(zalogowany[i])
+        	{
+        		strcat(send,login[i]);
+            		strcat(send," ");
+        	}
+    	}
+    	strcat(send,"\n");
+}
+
+
+/*
  * Return 0 jeśli nie musi wysyłać informacji zwrotnej
  * return 1 jeśli musi
  */
@@ -81,50 +125,23 @@ int wykonywanie(){
 	char rozkaz[6];
 	strncpy(get+1, rozkaz, 6);
 	if (strcmp(rozkaz, "/login")) {
-		int k = logowanie();
-		int id = (int) get[0];
-		msg.type = id+3;
-		switch(k){
-			case 0:
-			{
-				send = "Zalogowanie powiodlo sie\n";
-				msgsnd(id, send, sizeof(send)+1, 0);
-				break;
-			}
-			case 1:
-			{
-				send = "Zalogowanie nie powiodlo sie\n"
-				msgsnd(id, send, sizeof(send)+1, 0);
-				break;
-			}
-			case 2:
-			{
-				send = "Jestes juz zalogowany/a\n"
-				msgsnd(id, send, sizeof(send)+1, 0);
-				break;
-			}
-		}
+		msglogin(logowanie());
+		
 	} else if (strcmp(rozkaz, "/lgout")) {
-		msg.type = id+3;
-		msgsnd(id, "Wylogowywuje\n", 14, 0);
+		send = "Wylogowywuje\n"
 		wylogowywanie();
 		
 	} else if (strcmp(rozkaz, "/rlist")) {
 		listapokojow();
 		
 	} else if (strcmp(rozkaz, "/ulist")) {
-		msg.type = id+3;
-		int i =0;
-		for(i;i<USERS;)
-
-	} else if (strcmp(rozkaz, "/lgout")) {
-
+		msgulist();
 	} else if (strcmp(rozkaz, "/eroom")) {
-
+		
 	} else if (strcmp(rozkaz, "/lroom")) {
-
+			
 	} else if (strcmp(rozkaz, "/croom")) {
-
+		
 	} else if (strcmp(rozkaz, "/mroom")) {
 
 	} else if (strcmp(rozkaz, "/muser")) {
