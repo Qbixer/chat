@@ -9,7 +9,6 @@
 
 struct pokoj{
 	char nazwa[LOGIN]; //nazwa pokoju
-	int ilosc; //iloscuzytkownikow
 	char dostepny[USERS];//czy dany uzytkownik jest dostepny
 	unsigned char uzytkownicy[USERS];//lista uzytkownikow
 };
