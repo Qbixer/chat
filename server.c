@@ -70,7 +70,7 @@ void listapokojow(){
 	int i;
 	int j = 0;
 	for(i = 0; i<POKOJE;i++){
-		if()
+
 	}
 }
 
