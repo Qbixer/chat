@@ -65,11 +65,21 @@ int wylogowywanie(){
 		return 1;
 }
 
-void listapokojow(){
-	int i;
-	int j = 0;
-	for(i = 0; i<POKOJE;i++){
+/*
+ *
+ *
+ *przykładowa informacja zwrotna:
+ * "Pokoje: pokoj_a pokoj_b pokoj_c\0"
+ */
 
+void listapokojow() {
+	int i;
+	strcpy(send, "Pokoje: ");
+	int j = 8;
+	for (i = 0; i < POKOJE; i++) {
+		if(pokoj_dostepny[i]){
+			strcat(send,pokoje[i].nazwa);
+		}
 	}
 }
 
@@ -113,7 +123,7 @@ int wykonywanie(){
  *  |  _________rozkaz 6 charów
  *  | |   |
  *  | |   |
- *  c/login Zenon
+ *  "c/login Zenon\0"
  */
 
 
