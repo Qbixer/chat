@@ -31,45 +31,55 @@ void pobieranie(){
 
 }
 
+void logowanie(){
+
+
+}
+
+wylogowywanie(){
+
+
+}
 
 
 
+int main() {
 
-int main(){
+	char rozkaz[6];
 
-char rozkaz[6];
+	while (1) {
+		memset(get, 0, sizeof(char));
+		pobieranie();
+		strncpy(get, rozkaz + 2, 6);
+		if (strcmp(rozkaz, "/login")) {
+			logowanie();
 
-while(1) {
-	memset(get, 0, sizeof(char));
-	get();
-	strncpy(get, rozkaz + 2, 6);
-	if (strcmp(rozkaz, "/login")) {
-		logowanie();
+		} else if (strcmp(rozkaz, "/lgout")) {
+			wylogowywanie();
+		} else if (strcmp(rozkaz, "/rlist")) {
 
-	} else if (strcmp(rozkaz, "/lgout")) {
-		logout();
-	} else if (strcmp(rozkaz, "/rlist")) {
+		} else if (strcmp(rozkaz, "/ulist")) {
 
-	} else if (strcmp(rozkaz, "/ulist")) {
+		} else if (strcmp(rozkaz, "/lgout")) {
 
-	} else if (strcmp(rozkaz, "/lgout")) {
+		} else if (strcmp(rozkaz, "/eroom")) {
 
-	} else if (strcmp(rozkaz, "/eroom")) {
+		} else if (strcmp(rozkaz, "/lroom")) {
 
-	} else if (strcmp(rozkaz, "/lroom")) {
+		} else if (strcmp(rozkaz, "/croom")) {
 
-	} else if (strcmp(rozkaz, "/croom")) {
+		} else if (strcmp(rozkaz, "/mroom")) {
 
-	} else if (strcmp(rozkaz, "/mroom")) {
+		} else if (strcmp(rozkaz, "/muser")) {
 
-	} else if (strcmp(rozkaz, "/muser")) {
+		}
+		else {
+			int i;
+			for (i = 0; i < USERS; i++) {
 
-	}
-	else {
-		for (int i = 0; i < USERS; i++) {
-
-			strncpy(send, get, 128);
-			send(i + 3);
+				strncpy(send, get, 128);
+				wysylanie(i + 3);
+			}
 		}
 	}
 }
